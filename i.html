@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simon 的世界杯预测团队</title>
+  <style>
+    :root {
+      --page: #f5f5f7;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --white: #ffffff;
+      --line: rgba(0, 0, 0, 0.1);
+      --blue: #0071e3;
+      --cyan: #00c2ff;
+      --pink: #ff2d75;
+      --purple: #7c3cff;
+      --orange: #ff7a00;
+      --lime: #a6ff00;
+      --green: #22c55e;
+      --red: #ff3b30;
+      --black: #050507;
+      --card-shadow: 0 18px 42px rgba(0, 0, 0, 0.09);
+      --deep-shadow: 0 28px 72px rgba(0, 0, 0, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.42;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 48px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(245, 245, 247, 0.76);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      height: 48px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 36% 34%, #fff 0 10%, transparent 11%),
+        conic-gradient(from 210deg, var(--pink), var(--orange), var(--lime), var(--cyan), var(--purple), var(--pink));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: #3a3a3c;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 6px 9px;
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .ribbon {
+      padding: 14px 24px;
+      text-align: center;
+      color: #2b2b2f;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+    }
+
+    .ribbon a {
+      color: var(--blue);
+      font-weight: 650;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      min-height: 560px;
+      padding: 82px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: #111;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .eyebrow-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.14);
+    }
+
+    h1 {
+      margin: 26px 0 18px;
+      max-width: 850px;
+      font-size: clamp(56px, 8vw, 108px);
+      line-height: 0.95;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      color: #4d4d52;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.18;
+      font-weight: 680;
+    }
+
+    .hero-copy span {
+      color: #8a8a91;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .primary-link,
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 720;
+    }
+
+    .primary-link {
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .secondary-link {
+      color: var(--blue);
+      background: rgba(0, 113, 227, 0.09);
+    }
+
+    .hero-device {
+      min-height: 430px;
+      position: relative;
+      padding: 22px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(255, 45, 117, 0.75), transparent 25%),
+        radial-gradient(circle at 82% 24%, rgba(0, 194, 255, 0.72), transparent 32%),
+        radial-gradient(circle at 62% 88%, rgba(166, 255, 0, 0.56), transparent 34%),
+        linear-gradient(145deg, #101014, #16161c 52%, #09090b);
+      box-shadow: var(--deep-shadow);
+      overflow: hidden;
+    }
+
+    .hero-device::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .device-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 720;
+    }
+
+    .device-screen {
+      position: relative;
+      z-index: 1;
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .screen-tile {
+      min-height: 118px;
+      padding: 13px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(18px);
+    }
+
+    .screen-tile b {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .screen-tile span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+    }
+
+    .device-caption {
+      position: relative;
+      z-index: 1;
+      margin-top: 26px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 19px;
+      font-weight: 720;
+    }
+
+    .category-strip {
+      padding: 26px 0 56px;
+    }
+
+    .agent-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 108px;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 8px 0 18px;
+      scrollbar-width: none;
+    }
+
+    .agent-row::-webkit-scrollbar,
+    .product-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .agent-mini {
+      text-align: center;
+      color: #1d1d1f;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .agent-icon {
+      height: 86px;
+      margin-bottom: 10px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .agent-symbol {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 23px;
+      font-weight: 860;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+    }
+
+    .section {
+      padding: 38px 0;
+    }
+
+    .section-title {
+      margin: 0 0 22px;
+      font-size: clamp(31px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 820;
+    }
+
+    .section-title span {
+      color: #86868b;
+    }
+
+    .product-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(360px, 420px);
+      gap: 18px;
+      overflow-x: auto;
+      padding: 4px 0 20px;
+      scrollbar-width: none;
+    }
+
+    .product-card {
+      min-height: 548px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      border: 0;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      color: #1d1d1f;
+      background: #fff;
+      box-shadow: var(--card-shadow);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .product-card:hover,
+    .product-card.active {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.16);
+    }
+
+    .product-card.dark {
+      color: #fff;
+      background: #050507;
+    }
+
+    .product-card.blue {
+      background:
+        radial-gradient(circle at 86% 66%, rgba(0, 194, 255, 0.45), transparent 38%),
+        linear-gradient(150deg, #fff 0%, #f8fbff 45%, #dcecff 100%);
+    }
+
+    .product-card.orange {
+      color: #fff;
+      background:
+        radial-gradient(circle at 80% 70%, rgba(255, 220, 120, 0.52), transparent 35%),
+        linear-gradient(145deg, #ff6b00, #ff2d75 58%, #4b1cff 100%);
+    }
+
+    .product-card.lime {
+      background:
+        radial-gradient(circle at 72% 66%, rgba(166, 255, 0, 0.65), transparent 36%),
+        linear-gradient(145deg, #faffef, #dfffe8 52%, #e6f0ff);
+    }
+
+    .product-card.purple {
+      color: #fff;
+      background:
+        radial-gradient(circle at 74% 64%, rgba(0, 194, 255, 0.55), transparent 34%),
+        linear-gradient(145deg, #21103d, #6d33ff 54%, #ff2d75 100%);
+    }
+
+    .product-label {
+      color: #bf4800;
+      font-size: 13px;
+      font-weight: 780;
+      text-transform: uppercase;
+    }
+
+    .product-card.dark .product-label,
+    .product-card.orange .product-label,
+    .product-card.purple .product-label {
+      color: #ffd6a2;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 8px;
+      font-size: 32px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 820;
+    }
+
+    .product-card p {
+      margin: 0;
+      color: #515154;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .product-card.dark p,
+    .product-card.orange p,
+    .product-card.purple p {
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .score-art {
+      position: relative;
+      min-height: 250px;
+      margin: 24px -8px 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .score-orb {
+      width: 218px;
+      height: 218px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 58px;
+      font-weight: 860;
+      letter-spacing: -2px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.85), transparent 13%),
+        linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.24);
+    }
+
+    .product-card.dark .score-orb {
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.8), transparent 13%),
+        linear-gradient(135deg, var(--orange), var(--pink));
+    }
+
+    .product-card.lime .score-orb {
+      color: #111;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.88), transparent 13%),
+        linear-gradient(135deg, var(--lime), var(--cyan));
+    }
+
+    .product-card.purple .score-orb {
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.8), transparent 13%),
+        linear-gradient(135deg, var(--cyan), var(--purple));
+    }
+
+    .card-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-chip {
+      padding: 7px 9px;
+      border-radius: 999px;
+      color: #1d1d1f;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .product-card.blue .card-chip,
+    .product-card.lime .card-chip {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .analysis-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .selector {
+      position: sticky;
+      top: 66px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .select-btn {
+      width: 100%;
+      min-height: 76px;
+      padding: 13px;
+      text-align: left;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .select-btn strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .select-btn span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .select-btn.active {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, #111, #333);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+    }
+
+    .select-btn.active span {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .analysis-panel {
+      min-height: 680px;
+      padding: 28px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--card-shadow);
+    }
+
+    .panel-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 28px;
+      align-items: start;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-top h3 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 820;
+    }
+
+    .panel-top p {
+      max-width: 720px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      font-weight: 650;
+    }
+
+    .verdict-box {
+      min-height: 170px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.3), transparent 16%),
+        linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+    }
+
+    .verdict-box b {
+      display: block;
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .verdict-box span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,.76);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .metric {
+      min-height: 96px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #f5f5f7;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .metric b {
+      display: block;
+      font-size: 20px;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .detail-card,
+    .source-card,
+    .roster-card {
+      padding: 16px;
+      border-radius: 8px;
+      background: #fbfbfd;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .detail-card h4,
+    .source-card h4,
+    .roster-card h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    .detail-card ul,
+    .source-card ul,
+    .roster-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #3a3a3c;
+      font-size: 14px;
+    }
+
+    .detail-card li + li,
+    .source-card li + li,
+    .roster-card li + li {
+      margin-top: 6px;
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .player {
+      min-height: 92px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f5f5f7;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .player b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .player span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .source-links a,
+    .source-card a {
+      color: var(--blue);
+      font-weight: 720;
+    }
+
+    .source-links a {
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(0, 113, 227, 0.08);
+      font-size: 12px;
+    }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .roster-card {
+      min-height: 176px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+    }
+
+    .roster-no {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-size: 11px;
+      font-weight: 820;
+    }
+
+    .source-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .footer-note {
+      margin: 34px 0 20px;
+      padding: 18px;
+      border-radius: 8px;
+      color: #5e4216;
+      background: rgba(255, 159, 10, 0.14);
+      border: 1px solid rgba(255, 159, 10, 0.24);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1020px) {
+      .hero-grid,
+      .analysis-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .selector {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .roster-grid,
+      .source-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding: 0 14px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-device {
+        min-height: 360px;
+      }
+
+      .product-row {
+        grid-auto-columns: minmax(300px, 86vw);
+      }
+
+      .panel-top,
+      .metric-grid,
+      .detail-grid,
+      .player-grid,
+      .roster-grid,
+      .source-board,
+      .selector {
+        grid-template-columns: 1fr;
+      }
+
+      .analysis-panel {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="global-nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Simon World Cup Lab</span>
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="#latest">今日四场</a>
+        <a href="#analysis">可交互分析</a>
+        <a href="#roster">Agent 团队</a>
+        <a href="#sources">信息来源</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ribbon">
+    今日版本是赛前预判，不是最终临场锁分。官方首发出来后需要重算。<a href="#analysis">查看证据闸门</a>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>世界杯热身赛四场 · 22:13 CST</div>
+          <h1>Simon 的世界杯预测团队</h1>
+          <p class="hero-copy">不是猜球。<span>是把数据、伤停、盘口、裁判、天气和反方质询，装进一个可以审查的赛前指挥舱。</span></p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#latest">看今日四场</a>
+            <a class="secondary-link" href="#analysis">打开分析面板</a>
+          </div>
+        </div>
+
+        <div class="hero-device" aria-label="Simon 预测团队状态面板">
+          <div class="device-header">
+            <span>SIMON AI WAR ROOM</span>
+            <span>PRE-LOCK</span>
+          </div>
+          <div class="device-screen">
+            <div class="screen-tile"><b>4</b><span>今日比赛</span></div>
+            <div class="screen-tile"><b>16</b><span>Agent 分工</span></div>
+            <div class="screen-tile"><b>3</b><span>主胜倾向</span></div>
+            <div class="screen-tile"><b>1</b><span>重点防平</span></div>
+          </div>
+          <div class="device-caption">证据够才下结论。首发没出，只能预判。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-strip">
+      <div class="container">
+        <div class="agent-row" aria-label="Agent 分类">
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol">证</span></div>总指挥</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--orange),var(--pink));">数</span></div>数据</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--red),var(--orange));">伤</span></div>伤停</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--cyan),var(--blue));">首</span></div>首发</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--lime),var(--green));color:#111;">盘</span></div>盘口</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--purple),var(--pink));">爆</span></div>爆冷</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,#111,#555);">反</span></div>反方</div>
+          <div class="agent-mini"><div class="agent-icon"><span class="agent-symbol" style="background:linear-gradient(135deg,var(--blue),var(--cyan));">复</span></div>复盘</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="latest">
+      <div class="container">
+        <h2 class="section-title">The latest. <span>今日四场赛前预判。</span></h2>
+        <div class="product-row" id="productRow"></div>
+      </div>
+    </section>
+
+    <section class="section" id="analysis">
+      <div class="container">
+        <h2 class="section-title">Make the pick yours. <span>点一场，拆证据。</span></h2>
+        <div class="analysis-layout">
+          <div class="selector" id="selector"></div>
+          <article class="analysis-panel" id="analysisPanel"></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roster">
+      <div class="container">
+        <h2 class="section-title">The team difference. <span>不是一个 AI 在猜。</span></h2>
+        <div class="roster-grid">
+          <article class="roster-card"><span class="roster-no">01 / Gate</span><h4>总指挥 / 证据审查官</h4><ul><li>只判断证据够不够</li><li>判断冲突是否严重</li><li>决定可锁分 / 只预判 / 放弃</li></ul></article>
+          <article class="roster-card"><span class="roster-no">02 / Plan</span><h4>方案整合官</h4><ul><li>证据通过后才输出</li><li>胜平负、比分、半全场</li><li>必须回应反方质询</li></ul></article>
+          <article class="roster-card"><span class="roster-no">03 / Data</span><h4>数据侦察官</h4><ul><li>排名、近期走势</li><li>xG 与进失球</li><li>赛程与样本质量</li></ul></article>
+          <article class="roster-card"><span class="roster-no">04 / Injury</span><h4>伤停情报官</h4><ul><li>伤病、停赛、成疑</li><li>区分官方与媒体</li><li>修正概率和上限</li></ul></article>
+          <article class="roster-card"><span class="roster-no">05 / XI</span><h4>首发核验官</h4><ul><li>赛前 60-90 分钟复核</li><li>阵型变化</li><li>替补席变量</li></ul></article>
+          <article class="roster-card"><span class="roster-no">06 / Market</span><h4>盘口结构官</h4><ul><li>让球深浅</li><li>大小球</li><li>升退盘和冷热</li></ul></article>
+          <article class="roster-card"><span class="roster-no">07 / Path</span><h4>比赛路径官</h4><ul><li>主路径</li><li>低比分路径</li><li>意外路径</li></ul></article>
+          <article class="roster-card"><span class="roster-no">08 / Devil</span><h4>反方质询官</h4><ul><li>专门反驳主方案</li><li>找爆冷和误判</li><li>要求降信心</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="container">
+        <h2 class="section-title">Sources. <span>信息来源要摆在台面上。</span></h2>
+        <div class="source-board">
+          <article class="source-card"><h4>阵容 / 伤停 / 赛前预测</h4><ul><li><a href="https://www.sportsmole.co.uk/football/slovenia/preview/slovenia-vs-cyprus-prediction-team-news-lineups_598571.html">Sports Mole：斯洛文尼亚 vs 塞浦路斯</a></li><li><a href="https://www.sportsmole.co.uk/football/sweden/preview/sweden-vs-greece-prediction-team-news-lineups_598547.html">Sports Mole：瑞典 vs 希腊</a></li><li><a href="https://www.sportsmole.co.uk/football/spain/preview/spain-vs-iraq-prediction-team-news-lineups_598538.html">Sports Mole：西班牙 vs 伊拉克</a></li></ul></article>
+          <article class="source-card"><h4>法国场阵容与伤停</h4><ul><li><a href="https://en.parisfans.fr/france-vs-ivory-coast-probable-lineups-for-the-friendly-match.html">ParisFans / L'Équipe：法国预测首发</a></li><li><a href="https://www.sportsmole.co.uk/football/france/preview/france-vs-ivory-coast-prediction-team-news-lineups_598540.html">Sports Mole：法国 vs 科特迪瓦</a></li><li><a href="https://footballwhispers.com/blog/france-vs-ivory-coast-prediction-04-06-2026/">Football Whispers：法国场进球倾向</a></li></ul></article>
+          <article class="source-card"><h4>赔率 / 场地参考</h4><ul><li><a href="https://www.sportytrader.com/en/odds/sweden-greece-8481912/">SportyTrader：瑞典 vs 希腊赔率</a></li><li><a href="https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/">Tips.GG：西班牙 vs 伊拉克赔率</a></li><li><a href="https://cadenaser.com/galicia/2026/06/02/espana-irak-en-riazor-el-amistoso-de-la-seleccion-se-jugara-con-normalidad-tras-la-reparacion-del-estadio-radio-coruna/">Cadena SER：Riazor 草皮与比赛保障</a></li></ul></article>
+        </div>
+        <div class="footer-note">预测不保证命中或收益。当前所有结论都是赛前预判；官方首发、临场盘口、裁判和天气变化都会触发重算。</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const matches = [
+      {
+        id: "slovenia",
+        theme: "lime",
+        title: "斯洛文尼亚 vs 塞浦路斯",
+        label: "Most balanced home pick",
+        short: "斯洛文尼亚胜",
+        score: "2-0",
+        status: "只预判",
+        confidence: "中高",
+        total: "2 / 3球",
+        half: "胜-胜 / 平-胜",
+        handicap: "让1可看主队方向；深让谨慎",
+        upset: "低中",
+        gate: "74/100。伤停与首发仍待核验，但基本面和市场方向支持主队。",
+        summary: "主队实力、主场和赔率优势明显；但本杰明·谢什科 Benjamin Sesko 伤缺会降低大胜上限。",
+        metrics: ["胜平负：主胜", "比分：2-0 / 2-1 / 1-0", "总进球：2/3球", "半全场：胜-胜"],
+        reasons: [
+          "Sports Mole 指出塞浦路斯 FIFA 排名低约 68 位，且近 12 场只有 3 胜，其中 2 场来自圣马力诺。",
+          "谢什科 Benjamin Sesko 因胫骨问题缺席，主队进攻核心不在，比分从 3-0 下修到 2-0。",
+          "维波特尼克 Zan Vipotnik 和什波拉尔 Andraz Sporar 仍能支撑锋线，主队进球来源没有完全断掉。",
+          "Tips.GG 赛程赔率区显示斯洛文尼亚主胜约 1.43，市场明显站主队。"
+        ],
+        conflicts: [
+          "主队强，但友谊赛存在实验阵容。",
+          "谢什科缺阵让穿盘难度上升。",
+          "若塞浦路斯低位防守成功，1-0 比 3-0 更现实。"
+        ],
+        players: [
+          ["本杰明·谢什科", "Benjamin Sesko", "伤缺，降低主队上限"],
+          ["扬·奥布拉克", "Jan Oblak", "主队后场稳定锚点"],
+          ["扎恩·维波特尼克", "Zan Vipotnik", "可能顶上锋线"],
+          ["安德拉日·什波拉尔", "Andraz Sporar", "可与 Vipotnik 形成双前锋"],
+          ["伊奥安尼斯·皮塔斯", "Ioannis Pittas", "塞浦路斯主要得分点"],
+          ["格里戈里斯·卡斯塔诺斯", "Grigoris Kastanos", "客队中场组织点"]
+        ],
+        sources: [
+          ["Sports Mole 阵容伤停与 2-0 预测", "https://www.sportsmole.co.uk/football/slovenia/preview/slovenia-vs-cyprus-prediction-team-news-lineups_598571.html"],
+          ["Tips.GG 赔率区", "https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/"]
+        ]
+      },
+      {
+        id: "sweden",
+        theme: "dark",
+        title: "瑞典 vs 希腊",
+        label: "Trap watch",
+        short: "瑞典不败，重点防平",
+        score: "1-1",
+        status: "只预判",
+        confidence: "中",
+        total: "2球",
+        half: "平-平 / 平-胜",
+        handicap: "瑞典让球不稳；让1倾向让负",
+        upset: "中高",
+        gate: "68/100。瑞典实力占优，但防线、轮换和比赛动机冲突明显。",
+        summary: "瑞典主场有优势，但格雷厄姆·波特 Graham Potter 上任后防守不稳，维克托·约克雷斯 Viktor Gyokeres 大概率最多替补。",
+        metrics: ["胜平负：平 / 主胜", "比分：1-1 / 2-1 / 1-0", "总进球：2球", "半全场：平-平"],
+        reasons: [
+          "Sports Mole 指出瑞典在 Potter 手下 5 场都没零封，合计丢 11 球。",
+          "Gyokeres 刚踢完欧冠决赛，报道称最多替补；Isak 可能首发，但进攻组合完整度下降。",
+          "希腊近 3 场不进球，但也适合把比赛拖成低节奏。",
+          "SportyTrader 显示瑞典胜约 1.66-1.68，平约 3.65-3.8，客胜约 4.7-5.25；不是强势深盘。"
+        ],
+        conflicts: [
+          "模型支持瑞典不败，但盘口没有给到强穿信号。",
+          "希腊进攻弱，但瑞典防守同样不稳。",
+          "友谊赛最后热身，瑞典可能保护核心球员。"
+        ],
+        players: [
+          ["亚历山大·伊萨克", "Alexander Isak", "可能首发，瑞典主要进攻点"],
+          ["维克托·约克雷斯", "Viktor Gyokeres", "预计最多替补，影响火力"],
+          ["维克托·林德洛夫", "Victor Lindelof", "可能回到首发，稳定后防"],
+          ["卢卡斯·贝里瓦尔", "Lucas Bergvall", "中场推进变量"],
+          ["塔索斯·巴卡塞塔斯", "Tasos Bakasetas", "希腊队长缺席"],
+          ["范吉利斯·帕夫利迪斯", "Vangelis Pavlidis", "希腊锋线终结点"]
+        ],
+        sources: [
+          ["Sports Mole 赛前阵容与 1-1 预测", "https://www.sportsmole.co.uk/football/sweden/preview/sweden-vs-greece-prediction-team-news-lineups_598547.html"],
+          ["SportyTrader 赔率", "https://www.sportytrader.com/en/odds/sweden-greece-8481912/"]
+        ]
+      },
+      {
+        id: "spain",
+        theme: "orange",
+        title: "西班牙 vs 伊拉克",
+        label: "Highest clarity",
+        short: "西班牙胜",
+        score: "3-0",
+        status: "只预判偏强",
+        confidence: "高前提",
+        total: "3 / 4球",
+        half: "胜-胜",
+        handicap: "让2可看主队；让3防让平",
+        upset: "低",
+        gate: "82/100。方向明确，但轮换和伤停让比分上限存在不确定。",
+        summary: "西班牙排名、阵容深度和主场优势压制伊拉克；亚马尔 Yamal、尼科 Nico、梅里诺 Merino 可能不冒险。",
+        metrics: ["胜平负：主胜", "比分：3-0 / 4-0 / 3-1", "总进球：3/4球", "半全场：胜-胜"],
+        reasons: [
+          "Sports Mole 指出西班牙 FIFA 排名第2，伊拉克第57；西班牙近 28 场常规时间只输 1 场。",
+          "Yamal、Nico Williams、Mikel Merino 有伤情或恢复管理，De la Fuente 可能不冒险。",
+          "即便轮换，Rodri、Pedri、Gavi、Ferran Torres 等深度仍明显高于伊拉克。",
+          "Tips.GG 显示西班牙胜赔率约 1.01-1.05，平赔与客胜极高，市场极度支持主队。"
+        ],
+        conflicts: [
+          "方向最稳，但友谊赛可能提前收力。",
+          "Riazor 草皮此前修复，虽然报道称比赛无风险，仍需留意场地对节奏影响。",
+          "若西班牙轮换过多，4-0 上限会回落到 2-0/3-0。"
+        ],
+        players: [
+          ["拉明·亚马尔", "Lamine Yamal", "腿筋问题，可能不出场"],
+          ["尼科·威廉姆斯", "Nico Williams", "腹股沟问题，预计谨慎"],
+          ["米克尔·梅里诺", "Mikel Merino", "脚部伤情恢复中"],
+          ["罗德里", "Rodri", "可能首发但不踢满 90 分钟"],
+          ["佩德里", "Pedri", "中场创造力核心"],
+          ["艾曼·侯赛因", "Aymen Hussein", "伊拉克锋线威胁点"]
+        ],
+        sources: [
+          ["Sports Mole 阵容伤停与 3-0 预测", "https://www.sportsmole.co.uk/football/spain/preview/spain-vs-iraq-prediction-team-news-lineups_598538.html"],
+          ["Tips.GG 西班牙 vs 伊拉克赔率", "https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/"],
+          ["Cadena SER：Riazor 草皮与比赛保障", "https://cadenaser.com/galicia/2026/06/02/espana-irak-en-riazor-el-amistoso-de-la-seleccion-se-jugara-con-normalidad-tras-la-reparacion-del-estadio-radio-coruna/"]
+        ]
+      },
+      {
+        id: "france",
+        theme: "purple",
+        title: "法国 vs 科特迪瓦",
+        label: "Star power, BTTS risk",
+        short: "法国胜，防客队进球",
+        score: "2-1",
+        status: "只预判偏强",
+        confidence: "中高",
+        total: "3球",
+        half: "平-胜 / 胜-胜",
+        handicap: "法国让1可看让胜/让平；深让不追",
+        upset: "中",
+        gate: "76/100。法国方向强，但 Saliba 伤情和 PSG 球员管理带来防线与轮换变量。",
+        summary: "法国火力足够赢球，但科特迪瓦具备速度和身体对抗，William Saliba 缺阵风险让零封难度上升。",
+        metrics: ["胜平负：主胜", "比分：2-1 / 3-1 / 2-0", "总进球：3球", "半全场：平-胜"],
+        reasons: [
+          "Sports Mole 报道法国是 FIFA 排名第1，近期状态强，但 Saliba 因背伤预计不会出场。",
+          "ParisFans 引用 L'Équipe 预测：Mbappé、Olise、Cherki、Thuram 等可能首发，PSG 五名法国球员预计不首发。",
+          "科特迪瓦有 Kessié、Amad Diallo、Wahi 等推进和终结点，具备打进一球的路径。",
+          "Tips.GG 赔率区显示法国胜约 1.33，科特迪瓦客胜约 11.00，市场支持法国但不等于稳穿。"
+        ],
+        conflicts: [
+          "法国胜方向清楚，但 Saliba 缺阵降低防线完整度。",
+          "PSG 球员轮休可能影响替补火力节奏。",
+          "若科特迪瓦反击效率高，2-1 比 3-0 更合理。"
+        ],
+        players: [
+          ["基利安·姆巴佩", "Kylian Mbappe", "法国进攻主轴"],
+          ["威廉·萨利巴", "William Saliba", "背伤疑似缺席，防线变量"],
+          ["迈克尔·奥利塞", "Michael Olise", "右路创造点"],
+          ["瑞安·谢尔基", "Rayan Cherki", "前腰区域破局点"],
+          ["弗兰克·凯西", "Franck Kessie", "科特迪瓦中场对抗核心"],
+          ["阿马德·迪亚洛", "Amad Diallo", "边路反击威胁"]
+        ],
+        sources: [
+          ["ParisFans / L'Équipe 预测首发", "https://en.parisfans.fr/france-vs-ivory-coast-probable-lineups-for-the-friendly-match.html"],
+          ["Sports Mole：Saliba 伤情与法国场预览", "https://www.sportsmole.co.uk/football/france/preview/france-vs-ivory-coast-prediction-team-news-lineups_598540.html"],
+          ["Football Whispers：法国 3-1 与进球倾向", "https://footballwhispers.com/blog/france-vs-ivory-coast-prediction-04-06-2026/"]
+        ]
+      }
+    ];
+
+    const productRow = document.querySelector("#productRow");
+    const selector = document.querySelector("#selector");
+    const panel = document.querySelector("#analysisPanel");
+
+    function links(sources) {
+      return sources.map(source => `<a href="${source[1]}" target="_blank" rel="noreferrer">${source[0]}</a>`).join("");
+    }
+
+    function items(list) {
+      return list.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function renderProducts(activeId) {
+      productRow.innerHTML = matches.map(match => `
+        <button class="product-card ${match.theme} ${match.id === activeId ? "active" : ""}" type="button" data-id="${match.id}">
+          <div>
+            <div class="product-label">${match.label}</div>
+            <h3>${match.title}</h3>
+            <p>${match.summary}</p>
+          </div>
+          <div class="score-art"><div class="score-orb">${match.score}</div></div>
+          <div class="card-chips">
+            <span class="card-chip">${match.short}</span>
+            <span class="card-chip">${match.total}</span>
+            <span class="card-chip">爆冷 ${match.upset}</span>
+          </div>
+        </button>
+      `).join("");
+      productRow.querySelectorAll(".product-card").forEach(card => {
+        card.addEventListener("click", () => setActive(card.dataset.id, true));
+      });
+    }
+
+    function renderSelector(activeId) {
+      selector.innerHTML = matches.map(match => `
+        <button class="select-btn ${match.id === activeId ? "active" : ""}" type="button" data-id="${match.id}">
+          <strong>${match.title}</strong>
+          <span>${match.score} · ${match.short}</span>
+        </button>
+      `).join("");
+      selector.querySelectorAll(".select-btn").forEach(button => {
+        button.addEventListener("click", () => setActive(button.dataset.id));
+      });
+    }
+
+    function renderPanel(activeId) {
+      const match = matches.find(item => item.id === activeId) || matches[0];
+      panel.innerHTML = `
+        <div class="panel-top">
+          <div>
+            <h3>${match.title}</h3>
+            <p>${match.summary}</p>
+          </div>
+          <div class="verdict-box"><div><b>${match.score}</b><span>${match.short}</span></div></div>
+        </div>
+        <div class="metric-grid">
+          ${match.metrics.map(metric => `<div class="metric"><b>${metric.split("：")[0]}</b><span>${metric.split("：")[1] || ""}</span></div>`).join("")}
+        </div>
+        <div class="detail-grid">
+          <div class="detail-card"><h4>总指挥证据闸门</h4><ul><li>${match.gate}</li><li>当前状态：${match.status}，不是临场锁分。</li><li>信心等级：${match.confidence}。</li></ul></div>
+          <div class="detail-card"><h4>盘口 / 玩法映射</h4><ul><li>${match.handicap}</li><li>总进球：${match.total}。</li><li>半全场：${match.half}。</li></ul></div>
+          <div class="detail-card"><h4>具体原因</h4><ul>${items(match.reasons)}</ul></div>
+          <div class="detail-card"><h4>反方质询 / 冲突点</h4><ul>${items(match.conflicts)}</ul></div>
+        </div>
+        <div class="detail-card" style="margin-top:12px;"><h4>关键球员，中英文双写</h4><div class="player-grid">${match.players.map(player => `<div class="player"><b>${player[0]}</b><span>${player[1]}</span><span>${player[2]}</span></div>`).join("")}</div></div>
+        <div class="source-card" style="margin-top:12px;"><h4>本场信息来源</h4><div class="source-links">${links(match.sources)}</div></div>
+      `;
+    }
+
+    function setActive(id, scrollToPanel = false) {
+      renderProducts(id);
+      renderSelector(id);
+      renderPanel(id);
+      if (scrollToPanel) {
+        document.querySelector("#analysis").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    setActive(matches[0].id);
+  </script>
+</body>
+</html>
