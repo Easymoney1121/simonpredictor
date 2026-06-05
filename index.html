@@ -436,6 +436,53 @@
       font-weight: 820;
     }
 
+    .match-flags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 12px;
+      flex-wrap: wrap;
+    }
+
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 34px;
+      padding: 6px 9px 6px 7px;
+      border-radius: 999px;
+      color: #1d1d1f;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+      font-size: 12px;
+      font-weight: 780;
+      white-space: nowrap;
+    }
+
+    .flag-disc {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .vs-mark {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 11px;
+      font-weight: 860;
+      letter-spacing: 0;
+    }
+
+    .product-card.blue .vs-mark,
+    .product-card.lime .vs-mark {
+      color: rgba(0, 0, 0, 0.42);
+    }
+
     .product-card p {
       margin: 0;
       color: #515154;
@@ -585,6 +632,27 @@
       line-height: 1.04;
       letter-spacing: 0;
       font-weight: 820;
+    }
+
+    .panel-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .panel-title-row .match-flags {
+      margin: 0;
+    }
+
+    .panel-title-row .team-badge {
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow: none;
+    }
+
+    .panel-title-row .vs-mark {
+      color: #86868b;
     }
 
     .panel-top p {
@@ -807,6 +875,15 @@
       color: rgba(255, 255, 255, 0.75);
     }
 
+    .today-card:not(.hot) .vs-mark {
+      color: rgba(0, 0, 0, 0.42);
+    }
+
+    .today-card:not(.hot) .team-badge {
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow: none;
+    }
+
     .review-summary {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -892,6 +969,79 @@
       margin-top: 6px;
     }
 
+    .electric-title {
+      color: #050507;
+      text-shadow: 0 12px 34px rgba(255, 45, 117, 0.18);
+    }
+
+    .hit-wall {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .hit-card {
+      min-height: 230px;
+      padding: 18px;
+      border: 0;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 85% 18%, rgba(166, 255, 0, 0.62), transparent 32%),
+        radial-gradient(circle at 18% 78%, rgba(0, 194, 255, 0.46), transparent 34%),
+        linear-gradient(145deg, #111, #7c3cff 50%, #ff2d75);
+      box-shadow: 0 24px 64px rgba(124, 60, 255, 0.28);
+    }
+
+    .hit-card:nth-child(2) {
+      background:
+        radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.58), transparent 24%),
+        linear-gradient(145deg, #ff7a00, #ff2d75 55%, #111);
+    }
+
+    .hit-card:nth-child(3) {
+      color: #111;
+      background:
+        radial-gradient(circle at 78% 22%, rgba(0, 194, 255, 0.55), transparent 32%),
+        linear-gradient(145deg, #a6ff00, #fff 62%, #dff7ff);
+    }
+
+    .hit-card:nth-child(4) {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255, 122, 0, 0.64), transparent 32%),
+        linear-gradient(145deg, #050507, #2833ff 55%, #00c2ff);
+    }
+
+    .hit-card span {
+      display: inline-flex;
+      min-height: 26px;
+      align-items: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: #111;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 11px;
+      font-weight: 840;
+      text-transform: uppercase;
+    }
+
+    .hit-card h3 {
+      margin: 16px 0 9px;
+      font-size: 24px;
+      line-height: 1.06;
+    }
+
+    .hit-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .hit-card:nth-child(3) p {
+      color: #424246;
+    }
+
     .footer-note {
       margin: 34px 0 20px;
       padding: 18px;
@@ -917,6 +1067,7 @@
       .source-board,
       .today-board,
       .review-grid,
+      .hit-wall,
       .review-summary {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -955,6 +1106,7 @@
       .source-board,
       .today-board,
       .review-grid,
+      .hit-wall,
       .review-summary,
       .selector {
         grid-template-columns: 1fr;
@@ -974,8 +1126,9 @@
         <span>Simon World Cup Lab</span>
       </a>
       <nav class="nav-links" aria-label="页面导航">
-        <a href="#latest">今日监控</a>
+        <a href="#latest">Friendlies</a>
         <a href="#yesterday">昨日复盘</a>
+        <a href="#right">Got Right</a>
         <a href="#analysis">可交互分析</a>
         <a href="#roster">Agent 团队</a>
         <a href="#sources">信息来源</a>
@@ -984,19 +1137,19 @@
   </header>
 
   <div class="ribbon">
-    6 月 5 日：FIFA 世界杯正赛尚未开打，今日只做赛程监控；昨日四场已进入复盘。<a href="#yesterday">查看昨日复盘</a>
+    世界杯正赛前进入 World Cup Friendlies 模式：每天 11 点后读取竞彩挂牌池，再筛友谊赛候选。<a href="https://m.sporttery.cn/mjc/jsq/zqhhgg/" target="_blank" rel="noreferrer">Sporttery pool</a>
   </div>
 
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="eyebrow-dot"></span>世界杯赛程监控 · 08:30 CST</div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>World Cup Friendlies · 6 月 5 日</div>
           <h1>Simon 的世界杯预测团队</h1>
           <p class="hero-copy">不是猜球。<span>是把数据、伤停、盘口、裁判、天气和反方质询，装进一个可以审查的赛前指挥舱。</span></p>
           <div class="hero-actions">
-            <a class="primary-link" href="#latest">看今日监控</a>
-            <a class="secondary-link" href="#yesterday">看昨日复盘</a>
+            <a class="primary-link" href="#latest">看今日友谊赛</a>
+            <a class="secondary-link" href="#right">看猜对了什么</a>
           </div>
         </div>
 
@@ -1006,10 +1159,10 @@
             <span>PRE-LOCK</span>
           </div>
           <div class="device-screen">
-            <div class="screen-tile"><b>0</b><span>今日世界杯正赛</span></div>
+            <div class="screen-tile"><b>4</b><span>今日竞彩国际赛</span></div>
             <div class="screen-tile"><b>16</b><span>Agent 分工</span></div>
             <div class="screen-tile"><b>1/4</b><span>昨日胜平负方向</span></div>
-            <div class="screen-tile"><b>0/4</b><span>昨日精确比分</span></div>
+            <div class="screen-tile"><b>4</b><span>已命中子项</span></div>
           </div>
           <div class="device-caption">强队热身赛不能只看名气，轮换和动机必须加权。</div>
         </div>
@@ -1033,29 +1186,77 @@
 
     <section class="section" id="latest">
       <div class="container">
-        <h2 class="section-title">The latest. <span>今日赛程监控。</span></h2>
+        <h2 class="section-title">World Cup Friendlies. <span>今日友谊赛预测池。</span></h2>
         <div class="today-board">
           <article class="today-card hot">
-            <span class="roster-no">FIFA CHECK</span>
-            <h3>今日无 FIFA World Cup 正赛</h3>
-            <p>世界杯官方赛程显示 2026 正赛从 6 月 11 日开始；6 月 5 日不做世界杯正赛锁分。热身赛只进入观察池，不强行下结论。</p>
+            <span class="roster-no">周五201 · 19:30</span>
+            <h3>新加坡 vs 中国</h3>
+            <div class="match-flags" aria-label="新加坡 对 中国">
+              <span class="team-badge"><span class="flag-disc">🇸🇬</span>Singapore</span>
+              <span class="vs-mark">VS</span>
+              <span class="team-badge"><span class="flag-disc">🇨🇳</span>China PR</span>
+            </div>
+            <p>竞彩客胜 1.48，市场明显压中国；但客场友谊赛和让一结构要求防一球小胜。</p>
             <div class="card-chips">
-              <span class="card-chip">状态：等待正赛</span>
-              <span class="card-chip">锁分：否</span>
-              <span class="card-chip">复盘优先</span>
+              <span class="card-chip">方向：中国胜</span>
+              <span class="card-chip">比分：1-2 / 0-2</span>
+              <span class="card-chip">让球：新加坡+1防平</span>
             </div>
           </article>
           <article class="today-card">
-            <span class="roster-no">WARM-UP WATCH</span>
-            <h3>俄罗斯 vs 布基纳法索</h3>
-            <p>Guardian 赛程列出 6 月 5 日国际友谊赛 Russia v Burkina Faso。该场不是世界杯正赛，且与世界杯队伍相关性不足，暂不进入锁分池。</p>
+            <span class="roster-no">周五202 · 00:30</span>
+            <h3>斯洛伐克 vs 黑山</h3>
+            <div class="match-flags" aria-label="斯洛伐克 对 黑山">
+              <span class="team-badge"><span class="flag-disc">🇸🇰</span>Slovakia</span>
+              <span class="vs-mark">VS</span>
+              <span class="team-badge"><span class="flag-disc">🇲🇪</span>Montenegro</span>
+            </div>
+            <p>斯洛伐克主胜 1.58，但让一后客向更热，主胜可以看，穿盘不硬追。</p>
             <div class="card-chips">
-              <span class="card-chip">状态：只记录</span>
-              <span class="card-chip">总指挥：放弃本场</span>
-              <span class="card-chip">原因：证据场景不匹配</span>
+              <span class="card-chip">方向：斯洛伐克胜</span>
+              <span class="card-chip">比分：2-1 / 1-0</span>
+              <span class="card-chip">让球：防让负</span>
+            </div>
+          </article>
+          <article class="today-card">
+            <span class="roster-no">周五203 · 01:45</span>
+            <h3>匈牙利 vs 芬兰</h3>
+            <div class="match-flags" aria-label="匈牙利 对 芬兰">
+              <span class="team-badge"><span class="flag-disc">🇭🇺</span>Hungary</span>
+              <span class="vs-mark">VS</span>
+              <span class="team-badge"><span class="flag-disc">🇫🇮</span>Finland</span>
+            </div>
+            <p>主胜 1.42 是今日国际赛最强市场方向；但热身赛仍要防 2-1 而不是只看大胜。</p>
+            <div class="card-chips">
+              <span class="card-chip">方向：匈牙利胜</span>
+              <span class="card-chip">比分：2-0 / 2-1</span>
+              <span class="card-chip">进球：2/3球</span>
+            </div>
+          </article>
+          <article class="today-card">
+            <span class="roster-no">周五204 · 07:30</span>
+            <h3>加拿大 vs 爱尔兰</h3>
+            <div class="match-flags" aria-label="加拿大 对 爱尔兰">
+              <span class="team-badge"><span class="flag-disc">🇨🇦</span>Canada</span>
+              <span class="vs-mark">VS</span>
+              <span class="team-badge"><span class="flag-disc">🇮🇪</span>Ireland</span>
+            </div>
+            <p>加拿大是世界杯东道主送别战，主胜 1.45；但控时和轮换让防平仍有必要。</p>
+            <div class="card-chips">
+              <span class="card-chip">方向：加拿大不败</span>
+              <span class="card-chip">比分：2-1 / 1-1</span>
+              <span class="card-chip">进球：2/3球</span>
             </div>
           </article>
         </div>
+        <div class="product-row" id="productRow" style="margin-top:18px;"></div>
+      </div>
+    </section>
+
+    <section class="section" id="right">
+      <div class="container">
+        <h2 class="section-title electric-title">WHAT WE GOT RIGHT. <span>猜对的项目单独高亮。</span></h2>
+        <div class="hit-wall" id="hitWall"></div>
       </div>
     </section>
 
@@ -1102,9 +1303,9 @@
       <div class="container">
         <h2 class="section-title">Sources. <span>信息来源要摆在台面上。</span></h2>
         <div class="source-board">
-          <article class="source-card"><h4>阵容 / 伤停 / 赛前预测</h4><ul><li><a href="https://www.sportsmole.co.uk/football/slovenia/preview/slovenia-vs-cyprus-prediction-team-news-lineups_598571.html">Sports Mole：斯洛文尼亚 vs 塞浦路斯</a></li><li><a href="https://www.sportsmole.co.uk/football/sweden/preview/sweden-vs-greece-prediction-team-news-lineups_598547.html">Sports Mole：瑞典 vs 希腊</a></li><li><a href="https://www.sportsmole.co.uk/football/spain/preview/spain-vs-iraq-prediction-team-news-lineups_598538.html">Sports Mole：西班牙 vs 伊拉克</a></li></ul></article>
-          <article class="source-card"><h4>法国场阵容与伤停</h4><ul><li><a href="https://en.parisfans.fr/france-vs-ivory-coast-probable-lineups-for-the-friendly-match.html">ParisFans / L'Équipe：法国预测首发</a></li><li><a href="https://www.sportsmole.co.uk/football/france/preview/france-vs-ivory-coast-prediction-team-news-lineups_598540.html">Sports Mole：法国 vs 科特迪瓦</a></li><li><a href="https://footballwhispers.com/blog/france-vs-ivory-coast-prediction-04-06-2026/">Football Whispers：法国场进球倾向</a></li></ul></article>
-          <article class="source-card"><h4>赔率 / 场地参考</h4><ul><li><a href="https://www.sportytrader.com/en/odds/sweden-greece-8481912/">SportyTrader：瑞典 vs 希腊赔率</a></li><li><a href="https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/">Tips.GG：西班牙 vs 伊拉克赔率</a></li><li><a href="https://cadenaser.com/galicia/2026/06/02/espana-irak-en-riazor-el-amistoso-de-la-seleccion-se-jugara-con-normalidad-tras-la-reparacion-del-estadio-radio-coruna/">Cadena SER：Riazor 草皮与比赛保障</a></li></ul></article>
+          <article class="source-card"><h4>今日主池 / 竞彩挂牌</h4><ul><li><a href="https://m.sporttery.cn/mjc/jsq/zqhhgg/">Sporttery：足球混合过关，每天 11 点后刷新</a></li><li><a href="https://www.theguardian.com/football/fixtures/2026/Jun/05">Guardian：6 月 5 日国际友谊赛</a></li><li><a href="https://www.soccerbase.com/matches/results.sd?date=2026-06-05">SoccerBase：6 月 5 日赛程</a></li></ul></article>
+          <article class="source-card"><h4>今日友谊赛 / 赛前预测</h4><ul><li><a href="https://www.sportsmole.co.uk/football/slovakia/preview/slovakia-vs-montenegro-prediction-team-news-lineups_598606.html">Sports Mole：斯洛伐克 vs 黑山</a></li><li><a href="https://www.sportsmole.co.uk/football/hungary/preview/hungary-vs-finland-prediction-team-news-lineups_598543.html">Sports Mole：匈牙利 vs 芬兰</a></li><li><a href="https://www.sportsmole.co.uk/football/canada/news/canada-vs-rep-ireland-prediction-team-news-lineups_598611.html">Sports Mole：加拿大 vs 爱尔兰</a></li></ul></article>
+          <article class="source-card"><h4>昨日复盘来源</h4><ul><li><a href="https://www.channelnewsasia.com/sport/greece-spoil-swedens-pre-world-cup-party-2-2-friendly-draw-6163221">CNA / Reuters：瑞典 2-2 希腊</a></li><li><a href="https://cadenaser.com/nacional/2026/06/04/espana-1-1-irak-resumen-resultado-y-goles-del-partido-amistoso-previo-al-mundial-cadena-ser/">Cadena SER：西班牙 1-1 伊拉克</a></li><li><a href="https://www.fff.fr/article/16918-trompes-par-les-elephants.html">FFF：法国 1-2 科特迪瓦</a></li></ul></article>
         </div>
         <div class="footer-note">预测不保证命中或收益。当前所有结论都是赛前预判；官方首发、临场盘口、裁判和天气变化都会触发重算。</div>
       </div>
@@ -1178,167 +1379,208 @@
       }
     ];
 
+    const hitItems = [
+      {
+        tag: "DRAW CALL",
+        title: "Sweden-Greece: Draw Direction",
+        copy: "The system warned Sweden were not a clean home-win lock and kept draw as the main protection. Final: 2-2."
+      },
+      {
+        tag: "TOTAL GOALS",
+        title: "Slovenia-Cyprus: 2 Goals",
+        copy: "The win call missed, but the 2-goal lane stayed alive. Final: 1-1, exactly two total goals."
+      },
+      {
+        tag: "BTTS PATH",
+        title: "France-Ivory Coast: Both Score",
+        copy: "The winner was wrong, but the model correctly rejected a clean French shutout. Final: 1-2."
+      },
+      {
+        tag: "UPSET LESSON",
+        title: "Friendly Risk Was Real",
+        copy: "Spain and France proved the anti-overconfidence agent was right to demand lower confidence in warm-up matches."
+      }
+    ];
+
     const matches = [
       {
-        id: "slovenia",
+        id: "singapore",
+        theme: "orange",
+        title: "新加坡 vs 中国",
+        teams: [
+          { flag: "🇸🇬", name: "Singapore", zh: "新加坡" },
+          { flag: "🇨🇳", name: "China PR", zh: "中国" }
+        ],
+        label: "周五201 · Sporttery listed",
+        short: "中国胜，防一球小胜",
+        score: "1-2",
+        status: "只预判",
+        confidence: "中",
+        total: "2 / 3球",
+        half: "平-负 / 负-负",
+        handicap: "新加坡受让+1：优先防让平；中国若只赢一球，竞彩让球落平。",
+        upset: "中",
+        gate: "69/100。竞彩客胜 1.48 给出明显市场方向，但新加坡主场、友谊赛轮换和中国客场稳定性使其不能锁深盘。",
+        summary: "中国纸面实力和竞彩赔率优势明显，主路径是客胜；总指挥只允许做方向预判，不允许把中国穿盘当作结论。",
+        metrics: ["胜平负：中国胜", "比分：1-2 / 0-2 / 1-1", "总进球：2/3球", "半全场：平-负 / 负-负"],
+        reasons: [
+          "Sporttery 混合过关在 6 月 5 日 11 点后挂牌本场，周五201，客胜 1.48，平 4.00，主胜 4.90，市场重心在中国。",
+          "让球结构为新加坡 +1 后胜 2.30、平 3.35、负 2.53，说明市场不确定中国能否赢两球以上。",
+          "中国队排名与人员硬实力通常高于新加坡，但客场友谊赛节奏和试阵会压低大胜概率。",
+          "主队若低位防守并利用定位球，比分会更接近 1-2 而不是 0-3。"
+        ],
+        conflicts: [
+          "中国队近年客场稳定性不足，不能只按名气下判断。",
+          "新加坡主场如果先守住上半场，盘口会进入让平/冷平方向。",
+          "赛前首发若中国大轮换，信心必须从中降到中低。"
+        ],
+        players: [
+          ["武磊", "Wu Lei", "中国锋线终结点，若首发会提高客胜兑现率"],
+          ["张玉宁", "Zhang Yuning", "支点中锋，影响禁区效率"],
+          ["谢文能", "Xie Wenneng", "边路推进和冲刺变量"],
+          ["蒋光太", "Tyias Browning", "中国防线对抗核心"],
+          ["法里斯·拉姆利", "Faris Ramli", "新加坡反击和边路威胁"],
+          ["伊赫桑·范迪", "Ikhsan Fandi", "新加坡禁区终结点，需核验是否首发" ]
+        ],
+        sources: [
+          ["Sporttery：足球混合过关 6 月 5 日挂牌", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"],
+          ["Singapore friendlies announcement reference", "https://littlebigreddot.com/singapore-lions-friendlies-mongolia-china-pr-jalan-besar-may-2026?action=genpdf&id=14682"]
+        ]
+      },
+      {
+        id: "slovakia",
+        theme: "blue",
+        title: "斯洛伐克 vs 黑山",
+        teams: [
+          { flag: "🇸🇰", name: "Slovakia", zh: "斯洛伐克" },
+          { flag: "🇲🇪", name: "Montenegro", zh: "黑山" }
+        ],
+        label: "周五202 · One-goal lane",
+        short: "斯洛伐克胜，防穿盘失败",
+        score: "2-1",
+        status: "只预判",
+        confidence: "中",
+        total: "2 / 3球",
+        half: "平-胜 / 胜-胜",
+        handicap: "斯洛伐克 -1：首选让负，其次让平；不建议追让胜。",
+        upset: "中",
+        gate: "72/100。主胜 1.58 与赛前数据支持斯洛伐克，但让一盘口更像一球小胜模型。",
+        summary: "斯洛伐克主场和近期状态占优，主胜方向可以给；黑山身体对抗强，反方要求防 2-1 或 1-0 的窄胜。",
+        metrics: ["胜平负：主胜", "比分：2-1 / 1-0 / 1-1", "总进球：2/3球", "半全场：平-胜 / 胜-胜"],
+        reasons: [
+          "Sporttery 挂牌主胜 1.58，平 3.45，客胜 4.85，主队市场优势清楚。",
+          "让球 -1 后主胜 2.96、平 3.20、客胜 2.09，显示市场更防斯洛伐克赢一球或不穿。",
+          "Sports Mole 赛前指出双方都在本月首场友谊赛取胜，本场是季末收官性质，轮换概率存在。",
+          "斯洛伐克主场控球和定位球质量更好，但黑山反击和身体对抗会制造失球风险。"
+        ],
+        conflicts: [
+          "若斯洛伐克核心中场控时，进攻连续性会下降。",
+          "黑山若派出主力前锋组合，双方进球概率上升。",
+          "友谊赛末段大换人会抬高 1-1 风险。"
+        ],
+        players: [
+          ["米兰·什克里尼亚尔", "Milan Skriniar", "斯洛伐克防线核心"],
+          ["斯坦尼斯拉夫·洛博特卡", "Stanislav Lobotka", "中场节奏和出球核心"],
+          ["翁德雷·杜达", "Ondrej Duda", "前场连接点"],
+          ["达维德·汉茨科", "David Hancko", "左路推进和定位球点"],
+          ["斯特凡·约维蒂奇", "Stevan Jovetic", "黑山经验型攻击手"],
+          ["尼古拉·克尔斯托维奇", "Nikola Krstovic", "黑山锋线冲击点" ]
+        ],
+        sources: [
+          ["Sporttery：足球混合过关 6 月 5 日挂牌", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"],
+          ["Sports Mole：斯洛伐克 vs 黑山", "https://www.sportsmole.co.uk/football/slovakia/preview/slovakia-vs-montenegro-prediction-team-news-lineups_598606.html"],
+          ["MightyTips：斯洛伐克 vs 黑山赔率与预测", "https://www.mightytips.com/football-predictions/slovakia-vs-montenegro-prediction-05-06-2026/"]
+        ]
+      },
+      {
+        id: "hungary",
         theme: "lime",
-        title: "斯洛文尼亚 vs 塞浦路斯",
-        label: "Most balanced home pick",
-        short: "斯洛文尼亚胜",
+        title: "匈牙利 vs 芬兰",
+        teams: [
+          { flag: "🇭🇺", name: "Hungary", zh: "匈牙利" },
+          { flag: "🇫🇮", name: "Finland", zh: "芬兰" }
+        ],
+        label: "周五203 · Strongest market side",
+        short: "匈牙利胜",
         score: "2-0",
         status: "只预判",
         confidence: "中高",
         total: "2 / 3球",
         half: "胜-胜 / 平-胜",
-        handicap: "让1可看主队方向；深让谨慎",
-        upset: "低中",
-        gate: "74/100。伤停与首发仍待核验，但基本面和市场方向支持主队。",
-        summary: "主队实力、主场和赔率优势明显；但本杰明·谢什科 Benjamin Sesko 伤缺会降低大胜上限。",
-        metrics: ["胜平负：主胜", "比分：2-0 / 2-1 / 1-0", "总进球：2/3球", "半全场：胜-胜"],
+        handicap: "匈牙利 -1：让胜/让平二选，保守走让平保护 2-1。",
+        upset: "中低",
+        gate: "78/100。主胜 1.42 是今日国际赛最强方向，但友谊赛仍禁止写满信心。",
+        summary: "匈牙利主场、阵容完整度和赔率方向都占优，是今日最接近可下结论的一场；风险在于芬兰低位拖慢节奏。",
+        metrics: ["胜平负：主胜", "比分：2-0 / 2-1 / 1-0", "总进球：2/3球", "半全场：胜-胜 / 平-胜"],
         reasons: [
-          "Sports Mole 指出塞浦路斯 FIFA 排名低约 68 位，且近 12 场只有 3 胜，其中 2 场来自圣马力诺。",
-          "谢什科 Benjamin Sesko 因胫骨问题缺席，主队进攻核心不在，比分从 3-0 下修到 2-0。",
-          "维波特尼克 Zan Vipotnik 和什波拉尔 Andraz Sporar 仍能支撑锋线，主队进球来源没有完全断掉。",
-          "Tips.GG 赛程赔率区显示斯洛文尼亚主胜约 1.43，市场明显站主队。"
+          "Sporttery 挂牌主胜 1.42，平 3.85，客胜 6.10，是今日四场国际赛中主队优势最明显的一场。",
+          "让球 -1 后主胜 2.48、平 3.14、客胜 2.45，说明市场同时防 2-0 和 2-1 两条路径。",
+          "Sports Mole 赛前提到比赛在布达佩斯 Puskas Arena 进行，主场环境对匈牙利有利。",
+          "芬兰进攻上限有限，若不能先入球，比赛会被匈牙利逐渐压到主胜路径。"
         ],
         conflicts: [
-          "主队强，但友谊赛存在实验阵容。",
-          "谢什科缺阵让穿盘难度上升。",
-          "若塞浦路斯低位防守成功，1-0 比 3-0 更现实。"
+          "主胜赔率偏热，若临场继续降赔，需防热门过热。",
+          "匈牙利若试阵或提前收力，2-1 比 3-0 更真实。",
+          "芬兰若打五后卫，半场平局概率上升。"
         ],
         players: [
-          ["本杰明·谢什科", "Benjamin Sesko", "伤缺，降低主队上限"],
-          ["扬·奥布拉克", "Jan Oblak", "主队后场稳定锚点"],
-          ["扎恩·维波特尼克", "Zan Vipotnik", "可能顶上锋线"],
-          ["安德拉日·什波拉尔", "Andraz Sporar", "可与 Vipotnik 形成双前锋"],
-          ["伊奥安尼斯·皮塔斯", "Ioannis Pittas", "塞浦路斯主要得分点"],
-          ["格里戈里斯·卡斯塔诺斯", "Grigoris Kastanos", "客队中场组织点"]
+          ["索博斯洛伊", "Dominik Szoboszlai", "匈牙利定位球和推进核心"],
+          ["罗兰·绍洛伊", "Roland Sallai", "边路攻击点"],
+          ["威利·奥尔班", "Willi Orban", "防线和定位球优势"],
+          ["彼得·古拉西", "Peter Gulacsi", "门将稳定性"],
+          ["蒂姆·普基", "Teemu Pukki", "芬兰经验型前锋"],
+          ["格伦·卡马拉", "Glen Kamara", "芬兰中场出球点" ]
         ],
         sources: [
-          ["Sports Mole 阵容伤停与 2-0 预测", "https://www.sportsmole.co.uk/football/slovenia/preview/slovenia-vs-cyprus-prediction-team-news-lineups_598571.html"],
-          ["Tips.GG 赔率区", "https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/"]
+          ["Sporttery：足球混合过关 6 月 5 日挂牌", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"],
+          ["Sports Mole：匈牙利 vs 芬兰", "https://www.sportsmole.co.uk/football/hungary/preview/hungary-vs-finland-prediction-team-news-lineups_598543.html"],
+          ["Football Whispers：匈牙利 vs 芬兰赔率与预测", "https://footballwhispers.com/blog/hungary-vs-finland-prediction-05-06-2026/"]
         ]
       },
       {
-        id: "sweden",
-        theme: "dark",
-        title: "瑞典 vs 希腊",
-        label: "Trap watch",
-        short: "瑞典不败，重点防平",
-        score: "1-1",
+        id: "canada",
+        theme: "purple",
+        title: "加拿大 vs 爱尔兰",
+        teams: [
+          { flag: "🇨🇦", name: "Canada", zh: "加拿大" },
+          { flag: "🇮🇪", name: "Ireland", zh: "爱尔兰" }
+        ],
+        label: "周五204 · World Cup send-off",
+        short: "加拿大不败",
+        score: "2-1",
         status: "只预判",
         confidence: "中",
-        total: "2球",
-        half: "平-平 / 平-胜",
-        handicap: "瑞典让球不稳；让1倾向让负",
-        upset: "中高",
-        gate: "68/100。瑞典实力占优，但防线、轮换和比赛动机冲突明显。",
-        summary: "瑞典主场有优势，但格雷厄姆·波特 Graham Potter 上任后防守不稳，维克托·约克雷斯 Viktor Gyokeres 大概率最多替补。",
-        metrics: ["胜平负：平 / 主胜", "比分：1-1 / 2-1 / 1-0", "总进球：2球", "半全场：平-平"],
-        reasons: [
-          "Sports Mole 指出瑞典在 Potter 手下 5 场都没零封，合计丢 11 球。",
-          "Gyokeres 刚踢完欧冠决赛，报道称最多替补；Isak 可能首发，但进攻组合完整度下降。",
-          "希腊近 3 场不进球，但也适合把比赛拖成低节奏。",
-          "SportyTrader 显示瑞典胜约 1.66-1.68，平约 3.65-3.8，客胜约 4.7-5.25；不是强势深盘。"
-        ],
-        conflicts: [
-          "模型支持瑞典不败，但盘口没有给到强穿信号。",
-          "希腊进攻弱，但瑞典防守同样不稳。",
-          "友谊赛最后热身，瑞典可能保护核心球员。"
-        ],
-        players: [
-          ["亚历山大·伊萨克", "Alexander Isak", "可能首发，瑞典主要进攻点"],
-          ["维克托·约克雷斯", "Viktor Gyokeres", "预计最多替补，影响火力"],
-          ["维克托·林德洛夫", "Victor Lindelof", "可能回到首发，稳定后防"],
-          ["卢卡斯·贝里瓦尔", "Lucas Bergvall", "中场推进变量"],
-          ["塔索斯·巴卡塞塔斯", "Tasos Bakasetas", "希腊队长缺席"],
-          ["范吉利斯·帕夫利迪斯", "Vangelis Pavlidis", "希腊锋线终结点"]
-        ],
-        sources: [
-          ["Sports Mole 赛前阵容与 1-1 预测", "https://www.sportsmole.co.uk/football/sweden/preview/sweden-vs-greece-prediction-team-news-lineups_598547.html"],
-          ["SportyTrader 赔率", "https://www.sportytrader.com/en/odds/sweden-greece-8481912/"]
-        ]
-      },
-      {
-        id: "spain",
-        theme: "orange",
-        title: "西班牙 vs 伊拉克",
-        label: "Highest clarity",
-        short: "西班牙胜",
-        score: "3-0",
-        status: "只预判偏强",
-        confidence: "高前提",
-        total: "3 / 4球",
-        half: "胜-胜",
-        handicap: "让2可看主队；让3防让平",
-        upset: "低",
-        gate: "82/100。方向明确，但轮换和伤停让比分上限存在不确定。",
-        summary: "西班牙排名、阵容深度和主场优势压制伊拉克；亚马尔 Yamal、尼科 Nico、梅里诺 Merino 可能不冒险。",
-        metrics: ["胜平负：主胜", "比分：3-0 / 4-0 / 3-1", "总进球：3/4球", "半全场：胜-胜"],
-        reasons: [
-          "Sports Mole 指出西班牙 FIFA 排名第2，伊拉克第57；西班牙近 28 场常规时间只输 1 场。",
-          "Yamal、Nico Williams、Mikel Merino 有伤情或恢复管理，De la Fuente 可能不冒险。",
-          "即便轮换，Rodri、Pedri、Gavi、Ferran Torres 等深度仍明显高于伊拉克。",
-          "Tips.GG 显示西班牙胜赔率约 1.01-1.05，平赔与客胜极高，市场极度支持主队。"
-        ],
-        conflicts: [
-          "方向最稳，但友谊赛可能提前收力。",
-          "Riazor 草皮此前修复，虽然报道称比赛无风险，仍需留意场地对节奏影响。",
-          "若西班牙轮换过多，4-0 上限会回落到 2-0/3-0。"
-        ],
-        players: [
-          ["拉明·亚马尔", "Lamine Yamal", "腿筋问题，可能不出场"],
-          ["尼科·威廉姆斯", "Nico Williams", "腹股沟问题，预计谨慎"],
-          ["米克尔·梅里诺", "Mikel Merino", "脚部伤情恢复中"],
-          ["罗德里", "Rodri", "可能首发但不踢满 90 分钟"],
-          ["佩德里", "Pedri", "中场创造力核心"],
-          ["艾曼·侯赛因", "Aymen Hussein", "伊拉克锋线威胁点"]
-        ],
-        sources: [
-          ["Sports Mole 阵容伤停与 3-0 预测", "https://www.sportsmole.co.uk/football/spain/preview/spain-vs-iraq-prediction-team-news-lineups_598538.html"],
-          ["Tips.GG 西班牙 vs 伊拉克赔率", "https://tips.gg/matches/football/04-06-2026/spain-vs-iraq/05-00/odds/"],
-          ["Cadena SER：Riazor 草皮与比赛保障", "https://cadenaser.com/galicia/2026/06/02/espana-irak-en-riazor-el-amistoso-de-la-seleccion-se-jugara-con-normalidad-tras-la-reparacion-del-estadio-radio-coruna/"]
-        ]
-      },
-      {
-        id: "france",
-        theme: "purple",
-        title: "法国 vs 科特迪瓦",
-        label: "Star power, BTTS risk",
-        short: "法国胜，防客队进球",
-        score: "2-1",
-        status: "只预判偏强",
-        confidence: "中高",
-        total: "3球",
-        half: "平-胜 / 胜-胜",
-        handicap: "法国让1可看让胜/让平；深让不追",
+        total: "2 / 3球",
+        half: "平-胜 / 平-平",
+        handicap: "加拿大 -1：不追深；让球优先防让平，次防让负。",
         upset: "中",
-        gate: "76/100。法国方向强，但 Saliba 伤情和 PSG 球员管理带来防线与轮换变量。",
-        summary: "法国火力足够赢球，但科特迪瓦具备速度和身体对抗，William Saliba 缺阵风险让零封难度上升。",
-        metrics: ["胜平负：主胜", "比分：2-1 / 3-1 / 2-0", "总进球：3球", "半全场：平-胜"],
+        gate: "73/100。加拿大是世界杯东道主，比赛动机强；但友谊赛轮换和爱尔兰反击使其不能锁主胜。",
+        summary: "加拿大在蒙特利尔完成世界杯前送别战，主场和备战动机占优；爱尔兰未进世界杯但没有压力，防平是必要保护。",
+        metrics: ["胜平负：主胜 / 平", "比分：2-1 / 1-1 / 1-0", "总进球：2/3球", "半全场：平-胜 / 平-平"],
         reasons: [
-          "Sports Mole 报道法国是 FIFA 排名第1，近期状态强，但 Saliba 因背伤预计不会出场。",
-          "ParisFans 引用 L'Équipe 预测：Mbappé、Olise、Cherki、Thuram 等可能首发，PSG 五名法国球员预计不首发。",
-          "科特迪瓦有 Kessié、Amad Diallo、Wahi 等推进和终结点，具备打进一球的路径。",
-          "Tips.GG 赔率区显示法国胜约 1.33，科特迪瓦客胜约 11.00，市场支持法国但不等于稳穿。"
+          "Sporttery 挂牌主胜 1.45，平 3.80，客胜 5.65；让球 -1 后主胜 2.55、平 3.20、客胜 2.36，说明市场防一球小胜。",
+          "Canada Soccer 官方公告确认本场是加拿大男足世界杯前最后一场送别战，地点为蒙特利尔 Stade Saputo。",
+          "Sports Mole 指出加拿大一周后将开启世界杯小组赛，对阵波黑前仍需要磨合状态。",
+          "爱尔兰未进世界杯，没有成绩压力，比赛可以更开放，冷平路径真实存在。"
         ],
         conflicts: [
-          "法国胜方向清楚，但 Saliba 缺阵降低防线完整度。",
-          "PSG 球员轮休可能影响替补火力节奏。",
-          "若科特迪瓦反击效率高，2-1 比 3-0 更合理。"
+          "加拿大可能控制核心球员出场时间，避免世界杯前受伤。",
+          "爱尔兰若不是最强阵容，主胜概率上升；若派出年轻冲击型锋线，反击风险上升。",
+          "若加拿大早早领先，后段换人可能导致节奏断裂。"
         ],
         players: [
-          ["基利安·姆巴佩", "Kylian Mbappe", "法国进攻主轴"],
-          ["威廉·萨利巴", "William Saliba", "背伤疑似缺席，防线变量"],
-          ["迈克尔·奥利塞", "Michael Olise", "右路创造点"],
-          ["瑞安·谢尔基", "Rayan Cherki", "前腰区域破局点"],
-          ["弗兰克·凯西", "Franck Kessie", "科特迪瓦中场对抗核心"],
-          ["阿马德·迪亚洛", "Amad Diallo", "边路反击威胁"]
+          ["阿方索·戴维斯", "Alphonso Davies", "加拿大左路推进核心，需关注是否控制时间"],
+          ["乔纳森·戴维", "Jonathan David", "主要终结点"],
+          ["斯蒂芬·欧斯塔基奥", "Stephen Eustaquio", "中场节奏锚点"],
+          ["塔琼·布坎南", "Tajon Buchanan", "边路冲击变量"],
+          ["埃文·弗格森", "Evan Ferguson", "爱尔兰锋线威胁"],
+          ["内森·柯林斯", "Nathan Collins", "爱尔兰防线和定位球点" ]
         ],
         sources: [
-          ["ParisFans / L'Équipe 预测首发", "https://en.parisfans.fr/france-vs-ivory-coast-probable-lineups-for-the-friendly-match.html"],
-          ["Sports Mole：Saliba 伤情与法国场预览", "https://www.sportsmole.co.uk/football/france/preview/france-vs-ivory-coast-prediction-team-news-lineups_598540.html"],
-          ["Football Whispers：法国 3-1 与进球倾向", "https://footballwhispers.com/blog/france-vs-ivory-coast-prediction-04-06-2026/"]
+          ["Sporttery：足球混合过关 6 月 5 日挂牌", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"],
+          ["Canada Soccer 官方送别战公告", "https://canadasoccer.com/news/canada-soccer-announces-canmnts-final-send-off-match-in-montreal-ahead-of-fifa-world-cup-26/"],
+          ["Sports Mole：加拿大 vs 爱尔兰", "https://www.sportsmole.co.uk/football/canada/news/canada-vs-rep-ireland-prediction-team-news-lineups_598611.html"],
+          ["Football Whispers：加拿大场赔率与预测", "https://footballwhispers.com/blog/canada-vs-republic-of-ireland-prediction-06-06-2026/"]
         ]
       }
     ];
@@ -1354,6 +1596,27 @@
 
     function items(list) {
       return list.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function matchFlags(teams) {
+      return `
+        <div class="match-flags" aria-label="${teams.map(team => team.zh).join(" 对 ")}">
+          ${teams.map((team, index) => `
+            ${index ? '<span class="vs-mark">VS</span>' : ""}
+            <span class="team-badge"><span class="flag-disc">${team.flag}</span>${team.name}</span>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderHits() {
+      document.querySelector("#hitWall").innerHTML = hitItems.map(item => `
+        <article class="hit-card">
+          <span>${item.tag}</span>
+          <h3>${item.title}</h3>
+          <p>${item.copy}</p>
+        </article>
+      `).join("");
     }
 
     function renderReviews() {
@@ -1378,6 +1641,7 @@
           <div>
             <div class="product-label">${match.label}</div>
             <h3>${match.title}</h3>
+            ${matchFlags(match.teams)}
             <p>${match.summary}</p>
           </div>
           <div class="score-art"><div class="score-orb">${match.score}</div></div>
@@ -1410,7 +1674,10 @@
       panel.innerHTML = `
         <div class="panel-top">
           <div>
-            <h3>${match.title}</h3>
+            <div class="panel-title-row">
+              <h3>${match.title}</h3>
+              ${matchFlags(match.teams)}
+            </div>
             <p>${match.summary}</p>
           </div>
           <div class="verdict-box"><div><b>${match.score}</b><span>${match.short}</span></div></div>
@@ -1438,6 +1705,7 @@
       }
     }
 
+    renderHits();
     renderReviews();
     setActive(matches[0].id);
   </script>
