@@ -762,6 +762,136 @@
       gap: 14px;
     }
 
+    .today-board,
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .today-card,
+    .review-card {
+      min-height: 260px;
+      padding: 24px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .today-card.hot {
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(166, 255, 0, 0.48), transparent 30%),
+        radial-gradient(circle at 20% 76%, rgba(255, 45, 117, 0.46), transparent 32%),
+        linear-gradient(145deg, #050507, #181820 58%, #351a6f);
+    }
+
+    .today-card h3,
+    .review-card h3 {
+      margin: 12px 0 10px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .today-card p,
+    .review-card p {
+      margin: 0 0 18px;
+      color: #5f5f66;
+      font-size: 16px;
+      font-weight: 640;
+    }
+
+    .today-card.hot p {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .review-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .review-summary div {
+      min-height: 96px;
+      padding: 14px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(0, 194, 255, 0.36), transparent 34%),
+        linear-gradient(135deg, #111, #33224f 55%, #ff2d75);
+    }
+
+    .review-summary b,
+    .review-summary span {
+      display: block;
+    }
+
+    .review-summary b {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .review-summary span {
+      margin-top: 8px;
+      font-size: 23px;
+      font-weight: 840;
+    }
+
+    .review-card.good {
+      background:
+        radial-gradient(circle at 80% 18%, rgba(166, 255, 0, 0.44), transparent 32%),
+        linear-gradient(145deg, #fbfff5, #ffffff);
+    }
+
+    .review-card.bad {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255, 45, 117, 0.2), transparent 34%),
+        linear-gradient(145deg, #fff, #fff7f7);
+    }
+
+    .review-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .result-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #111;
+      background: rgba(0, 0, 0, 0.06);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .result-pill.hit {
+      color: #0f3b1f;
+      background: rgba(34, 197, 94, 0.18);
+    }
+
+    .result-pill.miss {
+      color: #641911;
+      background: rgba(255, 59, 48, 0.14);
+    }
+
+    .review-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #3a3a3c;
+      font-size: 14px;
+    }
+
+    .review-card li + li {
+      margin-top: 6px;
+    }
+
     .footer-note {
       margin: 34px 0 20px;
       padding: 18px;
@@ -784,7 +914,10 @@
       }
 
       .roster-grid,
-      .source-board {
+      .source-board,
+      .today-board,
+      .review-grid,
+      .review-summary {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -820,6 +953,9 @@
       .player-grid,
       .roster-grid,
       .source-board,
+      .today-board,
+      .review-grid,
+      .review-summary,
       .selector {
         grid-template-columns: 1fr;
       }
@@ -838,7 +974,8 @@
         <span>Simon World Cup Lab</span>
       </a>
       <nav class="nav-links" aria-label="页面导航">
-        <a href="#latest">今日四场</a>
+        <a href="#latest">今日监控</a>
+        <a href="#yesterday">昨日复盘</a>
         <a href="#analysis">可交互分析</a>
         <a href="#roster">Agent 团队</a>
         <a href="#sources">信息来源</a>
@@ -847,19 +984,19 @@
   </header>
 
   <div class="ribbon">
-    今日版本是赛前预判，不是最终临场锁分。官方首发出来后需要重算。<a href="#analysis">查看证据闸门</a>
+    6 月 5 日：FIFA 世界杯正赛尚未开打，今日只做赛程监控；昨日四场已进入复盘。<a href="#yesterday">查看昨日复盘</a>
   </div>
 
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow"><span class="eyebrow-dot"></span>世界杯热身赛四场 · 22:13 CST</div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>世界杯赛程监控 · 08:30 CST</div>
           <h1>Simon 的世界杯预测团队</h1>
           <p class="hero-copy">不是猜球。<span>是把数据、伤停、盘口、裁判、天气和反方质询，装进一个可以审查的赛前指挥舱。</span></p>
           <div class="hero-actions">
-            <a class="primary-link" href="#latest">看今日四场</a>
-            <a class="secondary-link" href="#analysis">打开分析面板</a>
+            <a class="primary-link" href="#latest">看今日监控</a>
+            <a class="secondary-link" href="#yesterday">看昨日复盘</a>
           </div>
         </div>
 
@@ -869,12 +1006,12 @@
             <span>PRE-LOCK</span>
           </div>
           <div class="device-screen">
-            <div class="screen-tile"><b>4</b><span>今日比赛</span></div>
+            <div class="screen-tile"><b>0</b><span>今日世界杯正赛</span></div>
             <div class="screen-tile"><b>16</b><span>Agent 分工</span></div>
-            <div class="screen-tile"><b>3</b><span>主胜倾向</span></div>
-            <div class="screen-tile"><b>1</b><span>重点防平</span></div>
+            <div class="screen-tile"><b>1/4</b><span>昨日胜平负方向</span></div>
+            <div class="screen-tile"><b>0/4</b><span>昨日精确比分</span></div>
           </div>
-          <div class="device-caption">证据够才下结论。首发没出，只能预判。</div>
+          <div class="device-caption">强队热身赛不能只看名气，轮换和动机必须加权。</div>
         </div>
       </div>
     </section>
@@ -896,8 +1033,42 @@
 
     <section class="section" id="latest">
       <div class="container">
-        <h2 class="section-title">The latest. <span>今日四场赛前预判。</span></h2>
-        <div class="product-row" id="productRow"></div>
+        <h2 class="section-title">The latest. <span>今日赛程监控。</span></h2>
+        <div class="today-board">
+          <article class="today-card hot">
+            <span class="roster-no">FIFA CHECK</span>
+            <h3>今日无 FIFA World Cup 正赛</h3>
+            <p>世界杯官方赛程显示 2026 正赛从 6 月 11 日开始；6 月 5 日不做世界杯正赛锁分。热身赛只进入观察池，不强行下结论。</p>
+            <div class="card-chips">
+              <span class="card-chip">状态：等待正赛</span>
+              <span class="card-chip">锁分：否</span>
+              <span class="card-chip">复盘优先</span>
+            </div>
+          </article>
+          <article class="today-card">
+            <span class="roster-no">WARM-UP WATCH</span>
+            <h3>俄罗斯 vs 布基纳法索</h3>
+            <p>Guardian 赛程列出 6 月 5 日国际友谊赛 Russia v Burkina Faso。该场不是世界杯正赛，且与世界杯队伍相关性不足，暂不进入锁分池。</p>
+            <div class="card-chips">
+              <span class="card-chip">状态：只记录</span>
+              <span class="card-chip">总指挥：放弃本场</span>
+              <span class="card-chip">原因：证据场景不匹配</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="yesterday">
+      <div class="container">
+        <h2 class="section-title">Yesterday review. <span>6 月 4 日四场赛后复盘。</span></h2>
+        <div class="review-summary">
+          <div><b>胜平负方向</b><span>1 / 4</span></div>
+          <div><b>精确比分</b><span>0 / 4</span></div>
+          <div><b>总进球方向</b><span>2 / 4</span></div>
+          <div><b>核心教训</b><span>强队热身赛降权</span></div>
+        </div>
+        <div class="review-grid" id="reviewGrid"></div>
       </div>
     </section>
 
@@ -941,6 +1112,72 @@
   </main>
 
   <script>
+    const yesterdayReviews = [
+      {
+        title: "斯洛文尼亚 vs 塞浦路斯",
+        predicted: "2-0 / 主胜",
+        actual: "1-1",
+        verdict: "miss",
+        result: "方向错，进球数对",
+        sources: [
+          ["Sports Mole 赛果页", "https://www.sportsmole.co.uk/football/international-friendlies/slovenia-vs-cyprus_game_248574.html"]
+        ],
+        bullets: [
+          "原判断高估主队稳定性：主胜方向错，实际为 1-1。",
+          "总进球 2 球命中，但半场路径完全错：塞浦路斯第 7 分钟先入球，斯洛文尼亚第 65 分钟追平。",
+          "学习规则：当数据模型本身只给主胜约 45% 且平/客合计超过 55% 时，不允许写“中高信心主胜”。"
+        ]
+      },
+      {
+        title: "瑞典 vs 希腊",
+        predicted: "1-1 / 防平",
+        actual: "2-2",
+        verdict: "good",
+        result: "方向对，比分小错",
+        sources: [
+          ["CNA / Reuters 赛后报道", "https://www.channelnewsasia.com/sport/greece-spoil-swedens-pre-world-cup-party-2-2-friendly-draw-6163221"],
+          ["Sports Mole 赛前页", "https://www.sportsmole.co.uk/football/sweden/preview/sweden-vs-greece-prediction-team-news-lineups_598547.html"]
+        ],
+        bullets: [
+          "胜平负方向命中：赛前强调瑞典不败但重点防平，实际 2-2。",
+          "错在总进球：低估了瑞典防线波动和尾段失球风险。",
+          "学习规则：瑞典这类锋线强、防线不稳的队伍，防平时总进球不能机械压 2 球。"
+        ]
+      },
+      {
+        title: "西班牙 vs 伊拉克",
+        predicted: "3-0 / 西班牙胜",
+        actual: "1-1",
+        verdict: "miss",
+        result: "强队冷平，方向错",
+        sources: [
+          ["Cadena SER 赛后", "https://cadenaser.com/nacional/2026/06/04/espana-1-1-irak-resumen-resultado-y-goles-del-partido-amistoso-previo-al-mundial-cadena-ser/"],
+          ["Flashscore 赛后", "https://www.flashscore.com/news/spain-iraq-international-friendly-june-4-2026/jJhmvPgR/"]
+        ],
+        bullets: [
+          "最大错判：把排名和赔率优势等同于热身赛锁胜，实际西班牙大量轮换，1-1 被伊拉克逼平。",
+          "Cadena SER 记录 Ferran Torres 第 16 分钟破门，Merchas Doski 第 27 分钟扳平；这说明比赛很早进入“强队控球但效率下降”的路径。",
+          "学习规则：友谊赛若强队大幅试阵、年轻球员首发、核心缺席或控时，主胜信心必须降一档，比分上限必须下修。"
+        ]
+      },
+      {
+        title: "法国 vs 科特迪瓦",
+        predicted: "2-1 / 法国胜",
+        actual: "1-2",
+        verdict: "miss",
+        result: "进球路径对，胜负错",
+        sources: [
+          ["法国足协 FFF 赛后", "https://www.fff.fr/article/16918-trompes-par-les-elephants.html"],
+          ["Sports Mole 法国场预览", "https://www.sportsmole.co.uk/football/france/preview/france-vs-ivory-coast-prediction-team-news-lineups_598540.html"]
+        ],
+        bullets: [
+          "原判断抓到了“双方进球/3球”路径，但错在默认法国能收比赛。",
+          "FFF 赛后记录法国 1-2 科特迪瓦，证明反方质询提出的非洲强队速度与对抗风险应被更高权重处理。",
+          "学习规则：强队防线核心缺席、PSG/欧战球员管理、友谊赛保护动作同时出现时，爆冷雷达至少升到“中高”。"
+        ]
+      }
+    ];
+
     const matches = [
       {
         id: "slovenia",
@@ -1107,6 +1344,7 @@
     ];
 
     const productRow = document.querySelector("#productRow");
+    const reviewGrid = document.querySelector("#reviewGrid");
     const selector = document.querySelector("#selector");
     const panel = document.querySelector("#analysisPanel");
 
@@ -1116,6 +1354,22 @@
 
     function items(list) {
       return list.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function renderReviews() {
+      reviewGrid.innerHTML = yesterdayReviews.map(review => `
+        <article class="review-card ${review.verdict}">
+          <span class="roster-no">${review.verdict === "good" ? "HIT" : "MISS"}</span>
+          <h3>${review.title}</h3>
+          <p>${review.result}</p>
+          <div class="review-meta">
+            <span class="result-pill">预测：${review.predicted}</span>
+            <span class="result-pill ${review.verdict === "good" ? "hit" : "miss"}">实际：${review.actual}</span>
+          </div>
+          <ul>${items(review.bullets)}</ul>
+          <div class="source-links">${links(review.sources)}</div>
+        </article>
+      `).join("");
     }
 
     function renderProducts(activeId) {
@@ -1184,6 +1438,7 @@
       }
     }
 
+    renderReviews();
     setActive(matches[0].id);
   </script>
 </body>
