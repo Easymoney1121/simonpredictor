@@ -1187,14 +1187,14 @@
     <section class="section" id="latest">
       <div class="container">
         <h2 class="section-title">World Cup Friendlies. <span>6 月 6 日竞彩国际赛池。</span></h2>
-        <div class="footer-note" style="margin:0 0 18px;">Sporttery 11:10 更新：周六国际赛共 11 场。比利时已开赛，预测冻结。19:35 只更新未开赛场：AS 更新阿根廷伤情，Messi、Nico Paz、Julián Álvarez 均处于恢复/保护状态，阿根廷深盘信心下调。</div>
+        <div class="footer-note" style="margin:0 0 18px;">Sporttery 11:10 更新：周六国际赛共 11 场。比利时 5-0 突尼斯已完赛并进入复盘：方向命中，但比分、总进球、让球强度明显错判。19:35 只更新未开赛场：AS 更新阿根廷伤情，阿根廷深盘信心下调。</div>
         <div class="today-board">
           <article class="today-card hot">
             <span class="roster-no">周六207 · 21:00</span>
             <h3>比利时 vs 突尼斯</h3>
             <div class="match-flags" aria-label="比利时 对 突尼斯"><span class="team-badge"><span class="flag-disc">🇧🇪</span>Belgium</span><span class="vs-mark">VS</span><span class="team-badge"><span class="flag-disc">🇹🇳</span>Tunisia</span></div>
-            <p>主胜 1.26，但比利时可能轮换，突尼斯有反击和定位球路径；主胜可看，比分防丢球。</p>
-            <div class="card-chips"><span class="card-chip">方向：比利时胜</span><span class="card-chip">比分：3-1 / 2-1</span><span class="card-chip">让球：-1 防让平</span></div>
+            <p>已完赛：比利时 5-0 突尼斯。方向命中，但我们低估了强队轮换后的表现动机和弱队崩盘尾部。</p>
+            <div class="card-chips"><span class="card-chip">命中：主胜</span><span class="card-chip">错判：比分/总进球</span><span class="card-chip">学习：强队尾部大胜</span></div>
           </article>
           <article class="today-card">
             <span class="roster-no">周六208 · 01:45</span>
@@ -1231,7 +1231,7 @@
 
     <section class="section" id="yesterday">
       <div class="container">
-        <h2 class="section-title">Yesterday review. <span>6 月 5 日四场赛后复盘。</span></h2>
+        <h2 class="section-title">Match review. <span>赛后复盘与昨日记录。</span></h2>
         <div class="review-summary">
           <div><b>胜平负方向</b><span>4 / 4</span></div>
           <div><b>精确比分</b><span>3 / 4</span></div>
@@ -1285,6 +1285,25 @@
 
   <script>
     const yesterdayReviews = [
+      {
+        title: "比利时 vs 突尼斯",
+        predicted: "3-1 / 比利时胜，-1 防让平",
+        actual: "5-0",
+        verdict: "miss",
+        result: "方向命中，强度错判",
+        sources: [
+          ["Sports Mole 赛果", "https://www.sportsmole.co.uk/football/international-friendlies/belgium-vs-tunisia_game_248610.html"],
+          ["Sports Mole 赛前阵容", "https://www.sportsmole.co.uk/football/belgium/preview/belgium-vs-tunisia-prediction-team-news-lineups_598650.html"],
+          ["Sporttery 赛前盘口", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"]
+        ],
+        bullets: [
+          "命中项：胜平负主胜。实际比利时 5-0，方向正确。",
+          "错判项：比分、总进球、让球强度。模型预计 3-1 / 2-1，实际零封且大胜穿盘。",
+          "关键错因：过度尊重友谊赛轮换，低估 Lukaku、Vanaken、Witsel、Lukebakio、Trossard 这类实用组合的表现动机。",
+          "新规则：世界杯临近阶段，强队轮换不自动降级；若主胜低于 1.30 且对手防线承压，必须保留 4-0 / 4-1 / 5-0 的大胜尾部。",
+          "反方质询修正：反方不只防过热，也要反问模型是否过度保守。"
+        ]
+      },
       {
         title: "新加坡 vs 中国",
         predicted: "1-2 / 中国胜",
@@ -1358,6 +1377,11 @@
 
     const hitItems = [
       {
+        tag: "DIRECTION HIT",
+        title: "Belgium-Tunisia: Home Win",
+        copy: "The main direction landed: Belgium won. The model still failed the intensity read, missing the 5-0 blowout and the -1 cover."
+      },
+      {
         tag: "EXACT SCORE",
         title: "Singapore-China: 1-2",
         copy: "The early Sporttery pool pick had China to win 1-2. Final: Singapore 1-2 China, including the +1 handicap draw lane."
@@ -1400,32 +1424,29 @@
           status: "公开线索：Transfermarkt 赛前页列为主裁；仍等官方赛前 match sheet 复核。",
           impact: "希腊主裁经验丰富，身体对抗容忍度中等；对比利时控球优势影响不大，但会让突尼斯的定位球/对抗路径更值得防。"
         },
-        short: "比利时胜，防丢球",
-        score: "3-1",
-        status: "只预判",
-        confidence: "中",
-        total: "3 / 4球",
-        half: "胜-胜 / 平-胜",
-        handicap: "比利时 -1：让胜/让平并列，保守防让平。",
+        short: "赛果 5-0，方向命中",
+        score: "5-0",
+        status: "已完赛复盘",
+        confidence: "复盘",
+        total: "实际 5球",
+        half: "实际：胜-胜",
+        handicap: "比利时 -1：实际让胜。赛前防让平过度保守。",
         upset: "中低",
-        gate: "72/100。主胜 1.26 仍明确，但 Sports Mole 指出比利时可能轮换、突尼斯有推高比分能力，零封权重下降。",
-        summary: "比利时仍是主胜方向，但二次名单审查后不再把 KDB/Doku 默认成满额首发；主路径改为 3-1，防 2-1。",
-        metrics: ["胜平负：主胜", "比分：3-1 / 2-1 / 2-0", "总进球：3/4球", "半全场：胜-胜 / 平-胜"],
+        gate: "赛后复盘：方向证据足够，但强度模型低估了比利时轮换阵容的表现动机和突尼斯防线崩盘尾部。",
+        summary: "已完赛：比利时 5-0 突尼斯。赛前主胜方向命中，但比分、总进球和让球强度全部错判。",
+        metrics: ["胜平负：主胜命中", "比分：预测3-1/2-1，实际5-0", "总进球：预测3/4，实际5", "半全场：胜-胜命中"],
         reasons: [
-          "Sporttery 当前挂牌：周六207 · 21:00，依据胜平负与让球赔率进入今日国际赛监控池。",
-          "UEFA 官方名单复核后，突尼斯侧更应关注 Hannibal Mejbri、Ellyes Skhiri、Elias Achouri，而不是旧名单里的经验前锋路径。",
-          "Sports Mole 赛前页显示比利时可能轮换，Lukaku、Witsel、Vanaken、Meunier 等更接近本场可用主线；Hannibal Mejbri 是伤疑。",
-          "主裁线索指向 Anastasios Sidiropoulos；裁判公开但仍需赛前 match sheet 二次确认。",
-          "72/100。主胜 1.26，市场方向明确；但友谊赛轮换和突尼斯反击要求防丢球。",
-          "比利时是今日早场强队方向，主胜证据足够；让球不深追，优先 3-1、2-1。",
-          "首发未完全确认，赛前 60-90 分钟必须复核阵容和核心球员出场时间。"
+          "赛前 Sporttery 主胜 1.26 指向明确，胜平负方向命中。",
+          "赛前判断比利时可能轮换是正确信息，但模型错误地把轮换当成强度下调，而不是世界杯前表现动机。",
+          "实际 5-0 说明比利时二线/轮换框架依旧能形成连续压迫，突尼斯一旦先丢后防线崩盘风险被低估。",
+          "Sports Mole 赛果显示 HT 1-0、FT 5-0；下半场强队持续加速，而不是友谊赛降速。",
+          "复盘官记录：强队低赔 + 对手防线承压 + 世界杯临近时，必须加入 4/5 球尾部比分。"
         ],
         conflicts: [
-          "Hannibal Mejbri 伤疑，不能再把他写成本场确定推进点。",
-          "De Bruyne/Doku 在名单里，但本场不应按满额首发计算。",
-          "友谊赛轮换会影响强队穿盘能力。",
-          "若临场盘口继续降赔或升赔，需要重新计算信心等级。",
-          "总指挥当前只允许赛前预判，不写保证命中的锁分结论。"
+          "错判：突尼斯反击/定位球路径被高估，实际没有转化成进球。",
+          "错判：让球防让平过度保守，实际直接穿 -1。",
+          "新反方质询：看到友谊赛轮换时，必须同时问“替补是否更想表现”。",
+          "新大胜规则：主胜低于 1.30 且强队阵容厚度明显时，不得只给 2-0/2-1/3-1。"
         ],
         players: [
           ["罗梅卢·卢卡库", "Romelu Lukaku", "禁区终结点"],
@@ -1439,6 +1460,7 @@
         ],
         sources: [
           ["Sporttery：6 月 6 日足球混合过关", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"],
+          ["Sports Mole：Belgium 5-0 Tunisia 赛果", "https://www.sportsmole.co.uk/football/international-friendlies/belgium-vs-tunisia_game_248610.html"],
           ["UEFA：Belgium vs Tunisia 官方名单", "https://www.uefa.com/european-qualifiers/friendlies/match/2047814--belgium-vs-tunisia/lineups/"],
           ["Sports Mole：Belgium vs Tunisia 阵容与 Hannibal 伤疑", "https://www.sportsmole.co.uk/football/belgium/preview/belgium-vs-tunisia-prediction-team-news-lineups_598650.html"],
           ["Transfermarkt：Belgium vs Tunisia 主裁线索", "https://www.transfermarkt.us/spielbericht/index/spielbericht/4809516"]
