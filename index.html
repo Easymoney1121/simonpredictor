@@ -1159,10 +1159,10 @@
             <span>POST-REVIEW</span>
           </div>
           <div class="device-screen">
-            <div class="screen-tile"><b>10/11</b><span>已赛后复盘</span></div>
+            <div class="screen-tile"><b>11/11</b><span>已赛后复盘</span></div>
             <div class="screen-tile"><b>16</b><span>Agent 分工</span></div>
-            <div class="screen-tile"><b>8/10</b><span>方向命中</span></div>
-            <div class="screen-tile"><b>2+3</b><span>精确/候选比分</span></div>
+            <div class="screen-tile"><b>9/11</b><span>方向命中</span></div>
+            <div class="screen-tile"><b>3+3</b><span>精确/候选比分</span></div>
           </div>
           <div class="device-caption">赛后学习：世界杯临近，强队轮换可能是表现动机，不一定是降级。</div>
         </div>
@@ -1187,7 +1187,7 @@
     <section class="section" id="latest">
       <div class="container">
         <h2 class="section-title">World Cup Friendlies. <span>6 月 6 日竞彩国际赛池。</span></h2>
-        <div class="footer-note" style="margin:0 0 18px;">赛后更新：除阿根廷 vs 洪都拉斯外，周六国际赛已进入复盘。美国 1-2 德国、巴拿马 1-1 波黑、巴西 2-1 埃及、委内瑞拉 1-2 土耳其命中度较高；比利时 5-0、苏格兰 4-0 提醒模型必须上调强队大胜尾部。</div>
+        <div class="footer-note" style="margin:0 0 18px;">赛后更新：周六 11 场国际赛全部进入复盘。阿根廷 2-0 洪都拉斯验证临场伤情下修；美国 1-2 德国、巴拿马 1-1 波黑为精确比分命中；比利时 5-0、苏格兰 4-0 提醒模型必须上调强队大胜尾部。</div>
         <div class="today-board">
           <article class="today-card hot">
             <span class="roster-no">周六207 · 21:00</span>
@@ -1233,10 +1233,10 @@
       <div class="container">
         <h2 class="section-title">Match review. <span>赛后复盘与昨日记录。</span></h2>
         <div class="review-summary">
-          <div><b>胜平负方向</b><span>4 / 4</span></div>
-          <div><b>精确比分</b><span>3 / 4</span></div>
-          <div><b>总进球方向</b><span>3 / 4</span></div>
-          <div><b>核心教训</b><span>下架场也要复盘</span></div>
+          <div><b>胜平负方向</b><span>9 / 11</span></div>
+          <div><b>精确比分</b><span>3</span></div>
+          <div><b>比分候选</b><span>3</span></div>
+          <div><b>核心教训</b><span>临场证据可改口</span></div>
         </div>
         <div class="review-grid" id="reviewGrid"></div>
       </div>
@@ -1467,6 +1467,25 @@
         ]
       },
       {
+        title: "阿根廷 vs 洪都拉斯",
+        predicted: "2-0 / 阿根廷胜，-2 防让平",
+        actual: "2-0",
+        verdict: "good",
+        result: "临场修正后精确比分命中",
+        sources: [
+          ["AS 赛前伤情与预测首发", "https://as.com/futbol/internacional/pendientes-de-nico-paz-f202606-n/"],
+          ["Sports Mole 赛前阵容", "https://www.sportsmole.co.uk/football/argentina/preview/argentina-vs-honduras-prediction-team-news-lineups_598651.html"],
+          ["Sporttery 赛前盘口", "https://m.sporttery.cn/mjc/jsq/zqhhgg/"]
+        ],
+        bullets: [
+          "命中项：胜平负主胜、精确比分 2-0、总进球 2 球、半全场胜-胜。",
+          "命中项：临场从 3-1 下修到 2-0 是正确的，AS 的 Messi、Nico Paz、Julián Álvarez 保护信息进入模型后发挥了作用。",
+          "命中项：阿根廷 -2 不追让胜，防让平是正确方向；2-0 对 -2 盘是让平路径。",
+          "反省项：早版 3-1 太依赖强队名气和洪都拉斯反击进球假设；核心缺阵/保护时，应优先压低双方进球而不是只压低强队进球。",
+          "学习规则：总指挥可以改口，但必须有新证据。临场伤情、预测首发和盘口缺口同时出现时，比分主线允许下修。"
+        ]
+      },
+      {
         title: "新加坡 vs 中国",
         predicted: "1-2 / 中国胜",
         actual: "1-2",
@@ -1562,6 +1581,11 @@
         tag: "SCORE BAND",
         title: "Venezuela-Turkey: 1-2",
         copy: "从旧核心叙事切到土耳其预测前场后，土耳其胜和 1-2 比分区间都打中。"
+      },
+      {
+        tag: "EXACT SCORE",
+        title: "Argentina-Honduras: 2-0",
+        copy: "临场伤情证据触发总指挥改口，从 3-1 下修到 2-0，最终精确命中。"
       },
       {
         tag: "HANDICAP READ",
@@ -2166,34 +2190,32 @@
           status: "AS 赛前页列为主裁；仍等待官方 match sheet 最终确认。Sporttery 主胜平负仍未开。",
           impact: "主裁信息有外网线索，但主盘缺失；总指挥仍只允许比分区间观察，等待首发和主盘。"
         },
-        short: "等待主盘，阿根廷胜",
+        short: "赛果 2-0，精确命中",
         score: "2-0",
-        status: "等待主盘",
-        confidence: "中低",
-        total: "2 / 3球",
-        half: "胜-胜",
-        handicap: "阿根廷 -2：让胜 2.00、让平 3.80、让负 2.75；Messi/Julián/Nico Paz 保护后，优先防让负/让平。",
+        status: "已完赛复盘",
+        confidence: "复盘命中",
+        total: "实际 2球",
+        half: "实际：胜-胜",
+        handicap: "阿根廷 -2：实际让平。临场防让平/让负方向正确。",
         upset: "低",
-        gate: "54/100。主胜平负未开，只能用 -2 盘推断；AS 最新伤情显示 Argentina 会用保护性轮换，深盘证据不足。",
-        summary: "阿根廷实力优势仍明显，但 Messi、Julián Álvarez、Nico Paz 均处恢复/保护状态，Dibu 也可能被 Rulli 替代；主路径从 3-1 下调为 2-0。",
-        metrics: ["胜平负：等待主盘", "比分：2-0 / 2-1 / 3-0", "总进球：2/3球", "半全场：胜-胜"],
+        gate: "赛后复盘：AS 伤情和保护性轮换证据足够，临场从 3-1 下修到 2-0 是正确动作。",
+        summary: "已完赛：阿根廷 2-0 洪都拉斯。临场根据 Messi、Julián Álvarez、Nico Paz 保护信息下修比分，最终精确命中。",
+        metrics: ["胜平负：主胜命中", "比分：2-0 精确命中", "总进球：2球命中", "半全场：胜-胜命中"],
         reasons: [
-          "Sporttery 当前挂牌：周六217 · 08:00，依据胜平负与让球赔率进入今日国际赛监控池。",
+          "Sporttery 赛前挂牌：周六217 · 08:00，主胜平负未开，只能用 -2 盘和外网阵容做观察。",
           "AS 于 6 月 6 日更新：Messi、Nico Paz、Julián Álvarez 均有身体不适/恢复管理，阿根廷会用一套保护性轮换十一人。",
           "AS 预测首发为 Rulli; Giay, Otamendi, Lisandro Martinez, Tagliafico; De Paul, Mac Allister, Enzo Fernandez, Almada; Lautaro Martinez, Jose Manuel Lopez。",
           "AS 赛前页列主裁为 Said Martinez；但仍需官方 match sheet 最终确认。",
           "Sports Mole 赛前页显示 Messi 受肌肉疲劳影响，未参加完整训练，不会出战 Honduras；Emiliano Martinez 手指伤，Montiel 肌肉问题。",
-          "54/100。主胜平负未开，只能用 -2 盘推断；深盘不够硬。",
-          "阿根廷实力优势明显，但主盘未开且多名核心保护，当前只做比分区间观察。",
-          "首发未完全确认，赛前 60-90 分钟必须复核阵容和核心球员出场时间。"
+          "临场修正：从早版 3-1 下调到 2-0，最终比分命中。",
+          "复盘结论：核心保护不只是降低阿根廷大胜上限，也降低洪都拉斯反击进球概率。"
         ],
         conflicts: [
           "Messi 不能继续作为本场关键球员；只能作为世界杯名单/后续健康监控。",
           "Julián Álvarez 也不应继续作为本场关键球员；AS 显示其脚踝问题需要保护。",
-          "Honduras 侧 Luis Palma、Rivas、Benguche 反击和年轻变量会让 2-1 留在备选，但 Argentina 控制力仍支持 2-0 主线。",
-          "友谊赛轮换会影响强队穿盘能力。",
-          "若临场盘口继续降赔或升赔，需要重新计算信心等级。",
-          "总指挥当前只允许赛前预判，不写保证命中的锁分结论。"
+          "早版 3-1 过度保留洪都拉斯进球，低估了阿根廷轮换阵容的控场能力。",
+          "新规则：核心缺阵/保护时，不要只下修强队进球，也要重新评估弱队反击能否真的形成高质量机会。",
+          "新规则：临场改口必须有新证据支撑；这场 AS 伤情 + 预测首发 + 主盘缺口同时出现，满足改口条件。"
         ],
         players: [
           ["劳塔罗·马丁内斯", "Lautaro Martinez", "禁区终结"],
